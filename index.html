@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarô + Arquétipos | Érika Vida Arquetípica</title>
+    
+    <!-- SEO Básico e Meta Tags -->
+    <meta name="description" content="Clareza certeira para as suas dúvidas, direção prática e arquétipos para alinhar sua energia.">
+    <meta property="og:title" content="Tarô + Arquétipos | Érika Vida Arquetípica">
+    <meta property="og:description" content="Clareza certeira para as suas dúvidas, direção prática e arquétipos para alinhar sua energia.">
+    <meta property="og:type" content="website">
+    
+    <!-- Fontes Premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* =========================================
+           VARIÁVEIS DE ESTILO (PALETA SOLICITADA)
+           ========================================= */
+        :root {
+            --bg-main: #1A0A2E;
+            --gold: #D4AF37;
+            --text-main: #FFFFFF;
+            --text-sec: #E8E8E8;
+            --border: #2D1846;
+            --card-bg: #23123D;
+            --gold-glow: rgba(212, 175, 55, 0.15);
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* =========================================
+           RESETS E CONFIGURAÇÕES GERAIS
+           ========================================= */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { 
+            font-family: var(--font-body); 
+            background-color: var(--bg-main); 
+            color: var(--text-sec); 
+            line-height: 1.6; 
+            overflow-x: hidden; 
+            -webkit-font-smoothing: antialiased; 
+        }
+        h1, h2, h3, h4, h5, h6 { 
+            font-family: var(--font-heading); 
+            color: var(--text-main); 
+            font-weight: 600; 
+            line-height: 1.2; 
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; border-radius: var(--radius-sm); }
+        
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        section { padding: 100px 0; position: relative; }
+        
+        /* =========================================
+           TIPOGRAFIA E TÍTULOS
+           ========================================= */
+        .section-header { text-align: center; margin-bottom: 60px; max-width: 800px; margin-inline: auto; }
+        .section-header h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+        .section-header p { font-size: 1.1rem; color: var(--text-sec); font-weight: 300; }
+        .highlight-gold { color: var(--gold); font-style: italic; }
+
+        /* =========================================
+           BOTÕES PREMIUM
+           ========================================= */
+        .btn-gold {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #E6C875, var(--gold));
+            color: #0A0A0A;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 18px 36px;
+            border-radius: var(--radius-sm);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px var(--gold-glow);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            background: linear-gradient(135deg, #FFFFFF, #E6C875);
+        }
+        .btn-large { width: 100%; font-size: 1.1rem; padding: 22px 30px; }
+        
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 16px 32px;
+            border-radius: var(--radius-sm);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+        .btn-outline:hover { background: var(--gold); color: #0A0A0A; }
+
+        /* =========================================
+           ANIMAÇÕES DE ENTRADA
+           ========================================= */
+        .reveal { opacity: 0; transform: translateY(40px); transition: var(--transition); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .fade-in { opacity: 0; transition: 1s ease; }
+        .fade-in.active { opacity: 1; }
+
+        /* =========================================
+           1. HERO SECTION
+           ========================================= */
+        .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 120px; padding-bottom: 80px; background: radial-gradient(circle at 70% 30%, rgba(45, 24, 70, 0.4), var(--bg-main) 70%); }
+        .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; }
+        .hero-brand { font-family: var(--font-heading); color: var(--gold); font-size: 1.2rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 24px; display: block; }
+        .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 24px; line-height: 1.1; }
+        .hero p { font-size: 1.2rem; margin-bottom: 32px; font-weight: 300; }
+        
+        .hero-list { margin-bottom: 40px; }
+        .hero-list li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 1.05rem; }
+        .hero-list i.fa-xmark { color: #E57373; margin-top: 5px; }
+        .hero-list i.fa-check { color: var(--gold); margin-top: 5px; }
+        
+        .hero-image-box { position: relative; padding: 20px; }
+        .hero-image-box::before { content: ''; position: absolute; top: 0; right: 0; bottom: 40px; left: 40px; border: 1px solid var(--gold); border-radius: var(--radius-md); z-index: 1; opacity: 0.5; }
+        .hero-img { position: relative; z-index: 2; border-radius: var(--radius-md); box-shadow: 0 20px 50px rgba(0,0,0,0.5); object-fit: cover; }
+
+        /* =========================================
+           2. PARA QUEM É
+           ========================================= */
+        .para-quem-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px; align-items: center; }
+        .target-cards { display: flex; flex-direction: column; gap: 30px; }
+        .target-card { background: var(--card-bg); border: 1px solid var(--border); padding: 40px; border-radius: var(--radius-md); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .target-card h3 { font-size: 1.4rem; margin-bottom: 24px; color: var(--gold); }
+        .target-list li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+        .target-list i { margin-top: 5px; font-size: 1.1rem; }
+        .target-list .fa-check-circle { color: var(--gold); }
+        .target-list .fa-times-circle { color: #E57373; }
+        .side-image { position: relative; border-radius: var(--radius-md); overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
+        .side-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-main), transparent); opacity: 0.6; }
+
+        /* =========================================
+           3. PACOTES (CARDS DE LUXO)
+           ========================================= */
+        .pacotes { background: linear-gradient(to bottom, var(--bg-main), #140724, var(--bg-main)); }
+        .pacotes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 60px; }
+        
+        .pacote-card { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border); 
+            border-radius: var(--radius-md); 
+            padding: 50px 40px; 
+            display: flex; 
+            flex-direction: column; 
+            position: relative;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .pacote-card:hover { transform: translateY(-5px); border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 15px 40px var(--gold-glow); }
+        
+        /* Destaque Card 2 */
+        .pacote-card.highlight { 
+            border: 2px solid var(--gold); 
+            background: linear-gradient(180deg, #2A1547 0%, var(--card-bg) 100%);
+            transform: scale(1.02);
+            box-shadow: 0 15px 50px var(--gold-glow);
+        }
+        .pacote-card.highlight:hover { transform: scale(1.04); }
+        
+        .ribbon { 
+            position: absolute; 
+            top: -15px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            background: linear-gradient(135deg, #E6C875, var(--gold)); 
+            color: #0A0A0A; 
+            font-weight: 700; 
+            font-size: 0.85rem; 
+            padding: 8px 24px; 
+            border-radius: 50px; 
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            white-space: nowrap;
+        }
+
+        .pacote-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; text-align: center; }
+        .pacote-card h3 { font-size: 1.6rem; text-align: center; margin-bottom: 15px; }
+        .pacote-desc { text-align: center; font-size: 0.95rem; margin-bottom: 30px; min-height: 85px; }
+        
+        .pacote-features { margin-bottom: 40px; flex-grow: 1; }
+        .pacote-features li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 0.95rem; }
+        .pacote-features i { color: var(--gold); margin-top: 4px; }
+        
+        .pacote-price { text-align: center; margin-bottom: 30px; border-top: 1px solid var(--border); padding-top: 30px; }
+        .pacote-price .avista { font-family: var(--font-heading); font-size: 2.2rem; color: var(--gold); display: block; line-height: 1.1; margin-bottom: 8px; }
+        .pacote-price .parcelado { font-size: 1rem; color: var(--text-sec); }
+
+        /* =========================================
+           4. COMO FUNCIONA
+           ========================================= */
+        .steps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .steps-list { display: flex; flex-direction: column; gap: 30px; }
+        .step-item { display: flex; gap: 24px; }
+        .step-number { 
+            width: 50px; height: 50px; flex-shrink: 0; 
+            background: rgba(212, 175, 55, 0.1); 
+            border: 1px solid var(--gold); 
+            border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            font-family: var(--font-heading); font-size: 1.4rem; color: var(--gold); 
+        }
+        .step-text h4 { font-size: 1.2rem; margin-bottom: 8px; color: var(--text-main); text-transform: uppercase; letter-spacing: 1px; }
+        .step-image { border-radius: var(--radius-md); border: 1px solid var(--border); padding: 15px; background: var(--card-bg); }
+        .step-image img { border-radius: var(--radius-sm); }
+
+        /* =========================================
+           5. PROVA SOCIAL (DEPOIMENTOS)
+           ========================================= */
+        .depoimentos { background-color: var(--card-bg); text-align: center; }
+        .depoimentos-scroll { display: flex; gap: 24px; overflow-x: auto; padding: 20px 0 40px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .depoimentos-scroll::-webkit-scrollbar { display: none; }
+        .depo-img { flex: 0 0 300px; scroll-snap-align: center; border-radius: var(--radius-md); border: 1px solid var(--border); box-shadow: 0 10px 20px rgba(0,0,0,0.2); transition: var(--transition); }
+        .depo-img:hover { transform: scale(1.02); border-color: rgba(212, 175, 55, 0.4); }
+
+        /* =========================================
+           6. FAQ (ACORDEÃO)
+           ========================================= */
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid var(--border); }
+        .faq-question { 
+            width: 100%; text-align: left; background: none; border: none; 
+            padding: 24px 0; color: var(--text-main); font-family: var(--font-heading); 
+            font-size: 1.2rem; cursor: pointer; display: flex; justify-content: space-between; 
+            align-items: center; transition: var(--transition); 
+        }
+        .faq-question:hover, .faq-question.active { color: var(--gold); }
+        .faq-question i { font-size: 1rem; color: var(--gold); transition: transform 0.3s ease; }
+        .faq-question.active i { transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .faq-answer p { padding-bottom: 24px; color: var(--text-sec); }
+
+        /* =========================================
+           7. CTA FINAL
+           ========================================= */
+        .cta-final { text-align: center; background: radial-gradient(circle at center, #23123D, var(--bg-main) 80%); border-top: 1px solid var(--border); }
+        .cta-final-box { max-width: 800px; margin: 0 auto; }
+        .cta-final h2 { font-size: 2.2rem; margin-bottom: 30px; }
+        .cta-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px; text-align: left; }
+        .choice-card { padding: 30px; border-radius: var(--radius-md); background: rgba(0,0,0,0.2); border: 1px solid var(--border); }
+        .choice-card h4 { color: var(--gold); margin-bottom: 15px; font-size: 1.2rem; }
+        
+        .upsell-box { margin-top: 80px; padding: 50px; background: rgba(255,255,255,0.02); border: 1px solid var(--gold); border-radius: var(--radius-lg); backdrop-filter: blur(10px); }
+        .upsell-box h3 { font-size: 1.6rem; color: var(--gold); margin-bottom: 15px; }
+        .upsell-box p { margin-bottom: 30px; font-size: 1.1rem; }
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+        .footer { text-align: center; padding: 40px 20px; background: #0A0A0A; border-top: 1px solid var(--border); }
+        .footer p { font-size: 0.9rem; color: #888; margin-bottom: 10px; }
+
+        /* =========================================
+           RESPONSIVIDADE (MOBILE)
+           ========================================= */
+        @media (max-width: 992px) {
+            .hero-grid, .para-quem-grid, .steps-grid, .cta-choices { grid-template-columns: 1fr; }
+            .pacotes-grid { grid-template-columns: 1fr; max-width: 600px; margin-inline: auto; }
+            .hero-image-box::before { display: none; }
+            .pacote-card.highlight { transform: none; }
+            .pacote-card.highlight:hover { transform: translateY(-5px); }
+        }
+        @media (max-width: 600px) {
+            section { padding: 60px 0; }
+            .hero { padding-top: 100px; text-align: center; }
+            .hero-quote, .hero-features { text-align: left; }
+            .hero-list li { justify-content: center; text-align: left; }
+            .target-card, .pacote-card, .upsell-box { padding: 30px 20px; }
+            .pacote-price .avista { font-size: 1.8rem; }
+            .btn-gold { width: 100%; padding: 16px 20px; font-size: 0.9rem; }
+            .depo-img { flex: 0 0 85%; }
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <!-- 1. HERO -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content reveal fade-up">
+                    <span class="hero-brand">🎴 Érika | Vida Arquetípica</span>
+                    <h1>Tarô + Arquétipos: A resposta que você precisa para <span class="highlight-gold">decidir sem medo</span></h1>
+                    <p>Clareza certeira para as suas dúvidas, direção prática e arquétipos para alinhar sua energia — sem enrolação.</p>
+                    
+                    <ul class="hero-list">
+                        <li><i class="fa-solid fa-xmark"></i> Não é leitura genérica</li>
+                        <li><i class="fa-solid fa-xmark"></i> Não é só "o que vai acontecer"</li>
+                        <li><i class="fa-solid fa-check"></i> É resposta direta, direção de ação e energia alinhada para você conseguir o que quer</li>
+                    </ul>
+                    
+                    <a href="#pacotes" class="btn-gold">Ver todos os pacotes abaixo</a>
+                </div>
+                
+                <div class="hero-image-box reveal fade-in">
+                    <!-- ARQUIVO: imagem taro 1.png -->
+                    <img src="imagem taro 1.png" alt="Érika Tarô e Arquétipos" class="hero-img" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. PARA QUEM É -->
+        <section class="para-quem">
+            <div class="container para-quem-grid">
+                <div class="target-cards reveal fade-up">
+                    <div class="target-card">
+                        <h3>Esse atendimento é perfeito se você:</h3>
+                        <ul class="target-list">
+                            <li><i class="fa-solid fa-check-circle"></i> Tem uma dúvida urgente que não sai da cabeça e não sabe o que fazer</li>
+                            <li><i class="fa-solid fa-check-circle"></i> Precisa de direção para tomar decisões importantes (amor, dinheiro, carreira, mudanças)</li>
+                            <li><i class="fa-solid fa-check-circle"></i> Quer saber qual energia ou arquétipo ativar para conseguir o que deseja</li>
+                            <li><i class="fa-solid fa-check-circle"></i> Está cansada de andar em círculos e quer clareza real para agir</li>
+                            <li><i class="fa-solid fa-check-circle"></i> Quer um atendimento de qualidade, mas ainda não pode investir no mergulho completo</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="target-card">
+                        <h3 style="color: #E57373;">E NÃO é para você se:</h3>
+                        <ul class="target-list">
+                            <li><i class="fa-solid fa-times-circle"></i> Quer só "adivinhações" sem direção prática</li>
+                            <li><i class="fa-solid fa-times-circle"></i> Não está aberta a ouvir verdades e se responsabilizar pelos seus passos</li>
+                            <li><i class="fa-solid fa-times-circle"></i> Espera um passe de mágica que resolva tudo sem você fazer a sua parte</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="side-image reveal fade-in">
+                    <!-- ARQUIVO: imagem taro 2.png -->
+                    <img src="imagem taro 2.png" alt="Carta O Sol Tarô" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. PACOTES -->
+        <section id="pacotes" class="pacotes">
+            <div class="container">
+                <div class="section-header reveal fade-up">
+                    <h2>Escolha o pacote ideal para o <span class="highlight-gold">seu momento</span></h2>
+                    <p>Opções desenhadas para entregar a profundidade exata que você precisa agora.</p>
+                </div>
+                
+                <div class="pacotes-grid">
+                    
+                    <!-- CARD 1 -->
+                    <div class="pacote-card reveal fade-up">
+                        <div class="pacote-icon"><i class="fa-solid fa-bolt"></i></div>
+                        <h3>✨ Pacote Clareza Imediata</h3>
+                        <p class="pacote-desc">Para quem tem UMA dúvida urgente que não sai da cabeça e precisa de resposta rápida e certeira.<br><br><span style="opacity: 0.7; font-size: 0.85rem;">Ex: "Devo aceitar esse emprego?", "Vale a pena continuar nesse relacionamento?"</span></p>
+                        
+                        <ul class="pacote-features">
+                            <li><i class="fa-solid fa-check"></i> Direcionamento COMPLETO sobre 1 questão específica</li>
+                            <li><i class="fa-solid fa-check"></i> Explicação detalhada em áudios personalizados</li>
+                            <li><i class="fa-solid fa-check"></i> Foto da tiragem de cartas</li>
+                            <li><i class="fa-solid fa-check"></i> Indicação dos Arquétipos ideais</li>
+                            <li><i class="fa-solid fa-check"></i> Telinha Arquetípica Personalizada</li>
+                        </ul>
+                        
+                        <div class="pacote-price">
+                            <span class="avista">R$ 89,90</span>
+                            <span class="parcelado">Ou 2x de R$ 45,00</span>
+                        </div>
+                        <a href="LINK_KIWIFY_PACOTE_1" class="btn-gold" target="_blank">Quero Esse Pacote</a>
+                    </div>
+                    
+                    <!-- CARD 2 (DESTAQUE) -->
+                    <div class="pacote-card highlight reveal fade-up">
+                        <div class="ribbon">⭐ MAIS ESCOLHIDO</div>
+                        <div class="pacote-icon"><i class="fa-solid fa-compass"></i></div>
+                        <h3>🛤️ Pacote Caminho Claro</h3>
+                        <p class="pacote-desc">Para quem tem 3 questões importantes, precisa de direção para várias áreas e quer tomar decisões sem medo de errar.<br><br><span style="opacity: 0.7; font-size: 0.85rem;">Ex: Carreira + Amor + Dinheiro</span></p>
+                        
+                        <ul class="pacote-features">
+                            <li><i class="fa-solid fa-check"></i> Direcionamento COMPLETO sobre 3 questões específicas</li>
+                            <li><i class="fa-solid fa-check"></i> Explicação de cada ponto em áudios longos</li>
+                            <li><i class="fa-solid fa-check"></i> Fotos de todas as tiragens de cartas</li>
+                            <li><i class="fa-solid fa-check"></i> Indicação dos Arquétipos certos para cada área</li>
+                            <li><i class="fa-solid fa-check"></i> Telinha Arquetípica Personalizada</li>
+                        </ul>
+                        
+                        <div class="pacote-price">
+                            <span class="avista">R$ 139,90</span>
+                            <span class="parcelado">Ou 3x de R$ 47,00</span>
+                        </div>
+                        <a href="LINK_KIWIFY_PACOTE_2" class="btn-gold btn-large" target="_blank">Quero o Mais Escolhido</a>
+                    </div>
+                    
+                    <!-- CARD 3 -->
+                    <div class="pacote-card reveal fade-up">
+                        <div class="pacote-icon"><i class="fa-solid fa-fire"></i></div>
+                        <h3>🔥 Pacote Alinhamento e Ação</h3>
+                        <p class="pacote-desc">Quer ir além das respostas — quer saber o que fazer na prática para mudar de vida e já alinhar a energia para resultados rápidos.</p>
+                        
+                        <ul class="pacote-features">
+                            <li><i class="fa-solid fa-check"></i> Direcionamento COMPLETO sobre 5 questões</li>
+                            <li><i class="fa-solid fa-check"></i> Explicação em áudios detalhados</li>
+                            <li><i class="fa-solid fa-check"></i> Fotos de todas as tiragens</li>
+                            <li><i class="fa-solid fa-check"></i> Indicação dos Arquétipos ideais</li>
+                            <li><i class="fa-solid fa-check"></i> Telinha Arquetípica Personalizada</li>
+                            <li><i class="fa-solid fa-check"></i> <strong>Ensino prático de ancoramento do Arquétipo principal</strong></li>
+                        </ul>
+                        
+                        <div class="pacote-price">
+                            <span class="avista">R$ 199,90</span>
+                            <span class="parcelado">Ou 5x de R$ 40,00</span>
+                        </div>
+                        <a href="LINK_KIWIFY_PACOTE_3" class="btn-gold" target="_blank">Quero Alinhar e Agir</a>
+                    </div>
+                    
+                    <!-- CARD 4 -->
+                    <div class="pacote-card reveal fade-up">
+                        <div class="pacote-icon"><i class="fa-solid fa-crown"></i></div>
+                        <h3>👑 Mapa Completo da Vida</h3>
+                        <p class="pacote-desc">Uma visão GERAL de TODAS as áreas da sua vida. Onde você está, para onde vai e o que precisa transformar.</p>
+                        
+                        <ul class="pacote-features">
+                            <li><i class="fa-solid fa-check"></i> Mesa Completa de Tarô abordando:</li>
+                            <li style="margin-top:-10px; margin-left: 20px; font-size: 0.85rem; color: #ccc;">❤️ Amorosa | 🧘 Pessoal | 💼 Profissional | ✨ Espiritual</li>
+                            <li><i class="fa-solid fa-check"></i> Áudios longos e profundos</li>
+                            <li><i class="fa-solid fa-check"></i> Fotos completas da mesa</li>
+                            <li><i class="fa-solid fa-check"></i> Indicação dos Arquétipos principais por área</li>
+                            <li><i class="fa-solid fa-check"></i> Telinha Arquetípica Personalizada</li>
+                        </ul>
+                        
+                        <div class="pacote-price">
+                            <span class="avista">R$ 297,00</span>
+                            <span class="parcelado">Ou 10x de R$ 32,60</span>
+                        </div>
+                        <a href="LINK_KIWIFY_PACOTE_4" class="btn-gold" target="_blank">Visão Completa da Minha Vida</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. COMO FUNCIONA -->
+        <section class="como-funciona">
+            <div class="container steps-grid">
+                <div class="steps-content reveal fade-up">
+                    <div class="section-header" style="text-align: left; margin-bottom: 40px; margin-inline: 0;">
+                        <h2>Como funciona o seu <span class="highlight-gold">atendimento de tarô</span></h2>
+                        <p>🎴 Passo a passo simples e sem enrolação:</p>
+                    </div>
+                    
+                    <div class="steps-list">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-text">
+                                <h4>Você escolhe o pacote e paga</h4>
+                                <p>Escolhe a opção ideal para o seu momento, efetua o pagamento por Pix ou Cartão e recebe a confirmação na hora.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-text">
+                                <h4>Você envia suas perguntas</h4>
+                                <p>Recebe um formulário simples para escrever suas questões com calma, contar o contexto que achar importante e enviar seus dados.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-text">
+                                <h4>Eu faço o trabalho profundo</h4>
+                                <p>Preparo o espaço, faço as tiragens exclusivas para você, uno com a energia dos Arquétipos e gravo os áudios explicando cada detalhe.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <div class="step-text">
+                                <h4>Você recebe tudo no WhatsApp</h4>
+                                <p>Em até 2 dias úteis, te envio tudo completo: áudios, fotos das cartas, telinha personalizada e as orientações. Ouça quantas vezes quiser.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-image reveal fade-in">
+                    <!-- ARQUIVO: imagem taro 3.png -->
+                    <img src="imagem taro 3.png" alt="Mesa de Tarô Érika" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. DEPOIMENTOS -->
+        <section class="depoimentos">
+            <div class="container">
+                <div class="section-header reveal fade-up">
+                    <h2>💛 Veja quem já teve a vida <span class="highlight-gold">transformada</span></h2>
+                    <p>Veja o que elas disseram após o atendimento com o Tarô e os Arquétipos:</p>
+                </div>
+                
+                <div class="depoimentos-scroll reveal fade-in">
+                    <!-- ARQUIVOS: imagem taro 4.png a imagem taro 8.png -->
+                    <img src="imagem taro 4.png" alt="Depoimento 1" class="depo-img" loading="lazy">
+                    <img src="imagem taro 5.png" alt="Depoimento 2" class="depo-img" loading="lazy">
+                    <img src="imagem taro 6.png" alt="Depoimento 3" class="depo-img" loading="lazy">
+                    <img src="imagem taro 7.png" alt="Depoimento 4" class="depo-img" loading="lazy">
+                    <img src="imagem taro 8.png" alt="Depoimento 5" class="depo-img" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. FAQ -->
+        <section class="faq">
+            <div class="container">
+                <div class="section-header reveal fade-up">
+                    <h2>Perguntas <span class="highlight-gold">Frequentes</span></h2>
+                    <p>Perguntas que todas fazem antes de escolher seu pacote.</p>
+                </div>
+                
+                <div class="faq-container reveal fade-up">
+                    <div class="faq-item">
+                        <button class="faq-question">O atendimento é ao vivo? <i class="fa-solid fa-plus"></i></button>
+                        <div class="faq-answer">
+                            <p>Não é ao vivo. Você envia suas perguntas, eu faço todo o trabalho de tiragem, análise e gravação dos áudios com toda a calma e dedicação, e entrego tudo completo no seu WhatsApp em até 48 horas úteis. Assim eu tenho tempo de mergulhar de verdade na sua energia, sem pressa.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Preciso saber alguma coisa de Tarô ou Arquétipos? <i class="fa-solid fa-plus"></i></button>
+                        <div class="faq-answer">
+                            <p>De jeito nenhum. Eu explico tudo de forma simples, sem termos complicados, para você entender 100% mesmo que nunca tenha visto uma carta de tarô na vida.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">As respostas são certeiras? <i class="fa-solid fa-plus"></i></button>
+                        <div class="faq-answer">
+                            <p>Eu trabalho com total seriedade, conexão e intuição. O Tarô mostra as energias atuais e os caminhos mais prováveis — sempre com direção prática para você agir da melhor forma.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Posso fazer perguntas de qualquer área? <i class="fa-solid fa-plus"></i></button>
+                        <div class="faq-answer">
+                            <p>Sim! Amor, dinheiro, carreira, família, saúde, espiritualidade, decisões importantes — qualquer dúvida que você tiver é bem-vinda.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Qual a diferença para o Atendimento Completo? <i class="fa-solid fa-plus"></i></button>
+                        <div class="faq-answer">
+                            <p>Esses pacotes são focados em respostas e direção com o Tarô, mais acessíveis. O Atendimento Completo (do outro site) é um mergulho profundo de 3 a 6 horas: inclui análise de Mapa Astral, toda a sua história, materiais em PDF e um plano de transformação longo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. CTA FINAL & UPSELL -->
+        <section class="cta-final">
+            <div class="container cta-final-box reveal fade-up">
+                <span class="hero-brand" style="margin-bottom: 15px;">🎴 A ESCOLHA É SUA</span>
+                <h2>Você não precisa mais andar perdida, <span class="highlight-gold">sem saber o que fazer.</span></h2>
+                
+                <div class="cta-choices">
+                    <div class="choice-card">
+                        <h4>Escolha 1:</h4>
+                        <p>Fechar essa página e continuar com as mesmas dúvidas, o mesmo medo de decidir errado, a mesma sensação de que a vida não anda.</p>
+                    </div>
+                    <div class="choice-card" style="border-color: var(--gold); background: rgba(212, 175, 55, 0.05);">
+                        <h4>Escolha 2:</h4>
+                        <p>Escolher o pacote ideal, receber clareza certeira, direção prática e alinhar sua energia para construir a vida que quer.</p>
+                    </div>
+                </div>
+                
+                <p style="margin-bottom: 30px; font-size: 1.1rem;">A clareza que você precisa está a um clique de distância.</p>
+                <a href="#pacotes" class="btn-gold btn-large">Quero ver os pacotes e comprar</a>
+                
+                <!-- UPSELL -->
+                <div class="upsell-box reveal fade-up">
+                    <h3>💫 Quer um mergulho ainda mais profundo?</h3>
+                    <p>Conheça meu Atendimento Completo: Mapa Astral + Tarô + Alinhamento Arquetípico. Analiso toda a sua história com plano de transformação para a vida toda.</p>
+                    <a href="LINK_DO_SEU_OUTRO_SITE" class="btn-outline" target="_blank">Conhecer o Atendimento Completo</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Érika | Vida Arquetípica — Todos os direitos reservados.</p>
+            <p class="disclaimer">Esse trabalho não substitui acompanhamento psicológico ou médico.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Animação de Scroll (Fade Up / Fade In)
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+            
+            const revealOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+            
+            revealElements.forEach(el => revealOnScroll.observe(el));
+
+            // Funcionalidade do FAQ (Acordeão)
+            const accordions = document.querySelectorAll('.faq-question');
+            accordions.forEach(acc => {
+                acc.addEventListener('click', function() {
+                    // Fecha os outros (opcional, manter fechado deixa mais limpo)
+                    accordions.forEach(otherAcc => {
+                        if (otherAcc !== this && otherAcc.classList.contains('active')) {
+                            otherAcc.classList.remove('active');
+                            otherAcc.nextElementSibling.style.maxHeight = null;
+                        }
+                    });
+
+                    this.classList.toggle('active');
+                    const panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
